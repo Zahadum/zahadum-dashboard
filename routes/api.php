@@ -17,3 +17,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 Route::resource('reservations', 'Api\ReservationController')->only(['index','store','show']);
+//Route::get('reservations','Api\ReservationController@index');
+//Route::post('reservations','Api\ReservationController@store');

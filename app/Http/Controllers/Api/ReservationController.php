@@ -41,6 +41,10 @@ class ReservationController extends Controller
         $reservation = $this->validate($request,[
             'name' => 'required|min:3|max:50',
             'email'=> 'required|email',
+            /*'phone' => 'nullable',
+            'people' => 'nullable',
+            'datetime' => 'nullable',
+            'note' => 'nullable',*/
         ]);
 
         $reservation = Reservation::create($reservation);
