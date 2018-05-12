@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\EmailController;
 use App\Http\Resources\ReservationResource;
 use App\Reservation;
 use Illuminate\Http\Request;
@@ -48,7 +49,15 @@ class ReservationController extends Controller
         ]);
 
         $reservation = Reservation::create($reservation);
-
-        return new ReservationResource($reservation);
+        $reservationResource = new ReservationResource($reservation);
+        $mailData['name']='haitrung01@gmail.com';
+        $mailData['email']='haitrung01@gmail.com';
+        $mailData['phone']='haitrung01@gmail.com';
+        $mailData['people']='haitrung01@gmail.com';
+        $mailData['datetime']='haitrung01@gmail.com';
+        $mailData['date']='haitrung01@gmail.com';
+        $mailData['note']='haitrung01@gmail.com';
+        EmailController::sendNotification($mailData);
+        return $reservationResource;
     }
 }
