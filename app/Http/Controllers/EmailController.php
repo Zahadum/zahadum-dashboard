@@ -21,8 +21,8 @@ class EmailController extends Controller
         $to      = 'haitrung01@gmail.com';
         $subject = 'Subscription Update: ';
         $message = 'hhh';
-        $headers = 'From: haitrung01@gmail.com' . "\r\n" .
-            'Reply-To: From: haitrung01@gmail.com' . "\r\n" .
+        $headers = 'From: contact@gwennguyen.com' . "\r\n" .
+            'Reply-To: From: contact@gwennguyen.com' . "\r\n" .
             "MIME-Version: 1.0\r\n" .
             "Content-Type: text/html; charset=ISO-8859-1\r\n";
         'X-Mailer: PHP/' . phpversion();
