@@ -54,9 +54,9 @@ class ReservationController extends Controller
         $mailData['email']=$reservationResource['email'];
         $mailData['phone']=$reservationResource['phone'];
         $mailData['people']=$reservationResource['people'];
-        $mailData['datetime']='';
-        $mailData['date']='';
-        $mailData['note']='haitrung01@gmail.com';
+        $mailData['datetime']=$reservationResource['datetime'];;
+        $mailData['date']=$reservationResource['date'];;
+        $mailData['note']=$reservationResource['note'];;
         EmailController::sendNotification($mailData);
         return $reservationResource;
     }
