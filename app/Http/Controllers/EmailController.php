@@ -28,6 +28,6 @@ class EmailController extends Controller
         'X-Mailer: PHP/' . phpversion();
 
         $mailed = mail($to, $subject, $message, $headers);
-
+*/
     }
 }
