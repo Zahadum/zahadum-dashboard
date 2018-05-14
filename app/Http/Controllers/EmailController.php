@@ -9,7 +9,7 @@ class EmailController extends Controller
     //
 
     public static function sendNotification($mailData) {
-
+/*
         Mail::send('emails.PVNotification', $mailData, function($message) use ($mailData) {
             $message->to('haitrung01@gmail.com','Trung Hang');
             $message->subject('Contact from '.$mailData['name']);
@@ -17,9 +17,9 @@ class EmailController extends Controller
             $message->replyTo('contact@phovuong.ca', 'Pho Vuong');
 
         });
-/*
-        $to      = 'haitrung01@gmail.com';
-        $subject = 'Subscription Update: ';
+*/
+        $to      = $mailData['email'];
+        $subject = 'Subscription Update: '.$mailData['name'];
         $message = 'hhh';
         $headers = 'From: contact@gwennguyen.com' . "\r\n" .
             'Reply-To: From: contact@gwennguyen.com' . "\r\n" .
@@ -28,6 +28,5 @@ class EmailController extends Controller
         'X-Mailer: PHP/' . phpversion();
 
         $mailed = mail($to, $subject, $message, $headers);
-*/
     }
 }

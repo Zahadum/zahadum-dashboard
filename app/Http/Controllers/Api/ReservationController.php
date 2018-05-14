@@ -50,12 +50,12 @@ class ReservationController extends Controller
 
         $reservation = Reservation::create($reservation);
         $reservationResource = new ReservationResource($reservation);
-        $mailData['name']='haitrung01@gmail.com';
+        $mailData['name']=$reservationResource['name'];
         $mailData['email']='haitrung01@gmail.com';
-        $mailData['phone']='haitrung01@gmail.com';
+        $mailData['phone']='123';
         $mailData['people']='haitrung01@gmail.com';
-        $mailData['datetime']='haitrung01@gmail.com';
-        $mailData['date']='haitrung01@gmail.com';
+        //$mailData['datetime']='';
+        //$mailData['date']='';
         $mailData['note']='haitrung01@gmail.com';
         EmailController::sendNotification($mailData);
         return $reservationResource;
