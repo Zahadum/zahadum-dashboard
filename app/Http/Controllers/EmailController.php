@@ -20,7 +20,12 @@ class EmailController extends Controller
 */
         $to      = $mailData['email'];
         $subject = 'Subscription Update: '.$mailData['name'];
-        $message = 'hhh';
+        $message = 'Name: '.$mailData['name'];
+        $message .= 'Email: '.$mailData['email'];
+        $message .= 'Phone: '.$mailData['phone'];
+        $message .= 'People: '.$mailData['people'];
+        $message .= 'Reservation: '.$mailData['datetime'];
+        $message .= 'Created Date: '.$mailData['date'];
         $headers = 'From: contact@gwennguyen.com' . "\r\n" .
             'Reply-To: From: contact@gwennguyen.com' . "\r\n" .
             "MIME-Version: 1.0\r\n" .
