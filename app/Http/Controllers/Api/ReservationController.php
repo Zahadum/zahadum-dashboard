@@ -40,7 +40,7 @@ class ReservationController extends Controller
      */
     public function store(Request $request) {
         $reservation = $this->validate($request,[
-            'name' => 'required|min:3|max:50',
+            'name' => 'nullable',
             'email'=> 'required|email',
             'phone' => 'nullable',
             'people' => 'nullable',
@@ -64,7 +64,23 @@ class ReservationController extends Controller
         return ['status'=>'failed'];
     }
     public function contact(Request $request) {
-
+        $reservation = $this->validate($request,[
+            'name' => 'nullable',
+            'email'=> 'required|email',
+            'phone' => 'nullable',
+            'subject' => 'nullable',
+            'note' => 'nullable',
+            'key' => 'required',
+        ]);
+        if($reservation["key"]=='123') {
+            $mailData['name'] = $reservation['name'];
+            $mailData['email'] = $reservation['email'];
+            $mailData['phone'] = $reservation['phone'];
+            $mailData['subject'] = $reservation['subject'];
+            $mailData['note'] = $reservation['note'];
+            EmailController::sendNotificationContact($mailData);
+            return ['status'=>'succeed'];
+        }
         return ['status'=>'failed'];
     }
 }
