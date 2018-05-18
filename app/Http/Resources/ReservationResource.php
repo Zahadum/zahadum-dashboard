@@ -22,7 +22,7 @@ class ReservationResource extends Resource
             'phone' => $this->phone,
             'people' => $this->people,
             'note' => $this->note,
-            'datetime' => $this->date,
+            'datetime' => $this->datetime,
             'date' => $this->created_at
         ];
     }
