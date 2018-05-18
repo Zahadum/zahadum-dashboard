@@ -17,6 +17,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 Route::resource('reservations', 'Api\ReservationController')->only(['index','store','show'])->middleware('cors');;
-Route::resource('contact', 'Api\ReservationController@contact')->middleware('cors');;
+Route::post('contact', 'Api\ReservationController@sendContact')->middleware('cors');;
 //Route::get('reservations','Api\ReservationController@index');
 //Route::post('reservations','Api\ReservationController@store');

@@ -63,7 +63,7 @@ class ReservationController extends Controller
         }
         return ['status'=>'failed'];
     }
-    public function contact(Request $request) {
+    public function sendContact(Request $request) {
         $reservation = $this->validate($request,[
             'name' => 'nullable',
             'email'=> 'required|email',
