@@ -47,7 +47,6 @@ class ReservationController extends Controller
             'datetime' => 'nullable|date',
             'note' => 'nullable',
             'key' => 'required',
-            'callback' => 'required',
         ]);
         if($reservation["key"]=='123') {
             $reservation = Reservation::create($reservation);
