@@ -61,10 +61,10 @@ class ReservationController extends Controller
             EmailController::sendNotification($mailData);
             return $reservationResource;
         }
-        return '';
+        return ['status'=>'failed'];
     }
     public function contact(Request $request) {
 
-        return '';
+        return ['status'=>'failed'];
     }
 }
