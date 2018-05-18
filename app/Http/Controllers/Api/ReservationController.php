@@ -46,9 +46,9 @@ class ReservationController extends Controller
             'people' => 'nullable',
             'datetime' => 'nullable|date',
             'note' => 'nullable',
-            'key' => 'required',
+
         ]);
-        if($reservation["key"]=='123') {
+
             $reservation = Reservation::create($reservation);
             $reservationResource = new ReservationResource($reservation);
             $mailData['name'] = $reservationResource['name'];
@@ -60,8 +60,7 @@ class ReservationController extends Controller
             $mailData['note'] = $reservationResource['note'];
             EmailController::sendNotification($mailData);
             return $reservationResource;
-        }
-        return '';
+
     }
     public function contact(Request $request) {
 
