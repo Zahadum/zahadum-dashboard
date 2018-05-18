@@ -44,7 +44,7 @@ class ReservationController extends Controller
             'email'=> 'required|email',
             'phone' => 'nullable',
             'people' => 'nullable',
-            'datetime' => 'nullable|date',
+            'date' => 'nullable|date',
             'note' => 'nullable',
             'key' => 'required',
         ]);
