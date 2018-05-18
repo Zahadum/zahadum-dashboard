@@ -46,18 +46,26 @@ class ReservationController extends Controller
             'people' => 'nullable',
             'datetime' => 'nullable|date',
             'note' => 'nullable',
+            'key' => 'required',
+            'callback' => 'required',
         ]);
+        if($reservation["key"]=='123') {
+            $reservation = Reservation::create($reservation);
+            $reservationResource = new ReservationResource($reservation);
+            $mailData['name'] = $reservationResource['name'];
+            $mailData['email'] = $reservationResource['email'];
+            $mailData['phone'] = $reservationResource['phone'];
+            $mailData['people'] = $reservationResource['people'];
+            $mailData['datetime'] = $reservationResource['datetime'];
+            $mailData['date'] = $reservationResource['date']['date'];
+            $mailData['note'] = $reservationResource['note'];
+            EmailController::sendNotification($mailData);
+            return $reservationResource;
+        }
+        return '';
+    }
+    public function contact(Request $request) {
 
-        $reservation = Reservation::create($reservation);
-        $reservationResource = new ReservationResource($reservation);
-        $mailData['name']=$reservationResource['name'];
-        $mailData['email']=$reservationResource['email'];
-        $mailData['phone']=$reservationResource['phone'];
-        $mailData['people']=$reservationResource['people'];
-        $mailData['datetime']=$reservationResource['datetime'];
-        $mailData['date']=$reservationResource['date']['date'];
-        $mailData['note']=$reservationResource['note'];
-        EmailController::sendNotification($mailData);
-        return $reservationResource;
+        return '';
     }
 }
