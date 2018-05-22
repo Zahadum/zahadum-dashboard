@@ -83,4 +83,20 @@ class ReservationController extends Controller
         }
         return ['status'=>'failed'];
     }
+    public function andolaSendContact(Request $request) {
+        $reservation = $this->validate($request,[
+            'name' => 'nullable',
+            'email'=> 'required|email',
+            'note' => 'required',
+            'key' => 'required',
+        ]);
+        if($reservation["key"]=='123') {
+            $mailData['name'] = $reservation['name'];
+            $mailData['email'] = $reservation['email'];
+            $mailData['note'] = $reservation['note'];
+            EmailController::andolaSendNotificationContact($mailData);
+            return ['status'=>'succeed'];
+        }
+        return ['status'=>'failed'];
+    }
 }
