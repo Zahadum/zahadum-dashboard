@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\ContactForm;
 use App\Http\Controllers\EmailController;
+use App\Http\Resources\ContactFormResource;
 use App\Http\Resources\ReservationResource;
 use App\Reservation;
 use Illuminate\Http\Request;
@@ -64,7 +66,7 @@ class ReservationController extends Controller
         return ['status'=>'failed'];
     }
     public function sendContact(Request $request) {
-        $reservation = $this->validate($request,[
+        $contact = $this->validate($request,[
             'name' => 'nullable',
             'email'=> 'required|email',
             'phone' => 'nullable',
@@ -72,30 +74,34 @@ class ReservationController extends Controller
             'note' => 'nullable',
             'key' => 'required',
         ]);
-        if($reservation["key"]=='123') {
-            $mailData['name'] = $reservation['name'];
-            $mailData['email'] = $reservation['email'];
-            $mailData['phone'] = $reservation['phone'];
-            $mailData['subject'] = $reservation['subject'];
-            $mailData['note'] = $reservation['note'];
+        if($contact["key"]=='123') {
+            $contact = ContactForm::create($contact);
+            $contactResource = new ContactFormResource($contact);
+            $mailData['name'] = $contactResource['name'];
+            $mailData['email'] = $contactResource['email'];
+            $mailData['phone'] = $contactResource['phone'];
+            $mailData['subject'] = $contactResource['subject'];
+            $mailData['note'] = $contactResource['note'];
             EmailController::sendNotificationContact($mailData);
-            return ['status'=>'succeed'];
+            return $contactResource;
         }
         return ['status'=>'failed'];
     }
     public function andolaSendContact(Request $request) {
-        $reservation = $this->validate($request,[
+        $contact = $this->validate($request,[
             'name' => 'nullable',
             'email'=> 'required|email',
             'note' => 'required',
             'key' => 'required',
         ]);
-        if($reservation["key"]=='123') {
-            $mailData['name'] = $reservation['name'];
-            $mailData['email'] = $reservation['email'];
-            $mailData['note'] = $reservation['note'];
+        if($contact["key"]=='123') {
+            $contact = ContactForm::create($contact);
+            $contactResource = new ContactFormResource($contact);
+            $mailData['name'] = $contactResource['name'];
+            $mailData['email'] = $contactResource['email'];
+            $mailData['note'] = $contactResource['note'];
             EmailController::andolaSendNotificationContact($mailData);
-            return ['status'=>'succeed'];
+            return $contactResource;
         }
         return ['status'=>'failed'];
     }

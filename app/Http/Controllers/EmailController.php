@@ -10,7 +10,7 @@ class EmailController extends Controller
 
     public static function sendNotification($mailData) {
         $to      = 'haitrung01@gmail.com';
-        $subject = 'Subscription Update: '.$mailData['name'];
+        $subject = 'Reservation(phovuong.ca): '.$mailData['name'];
         $message = 'Name: '.$mailData['name']. "<br/>";
         $message .= 'Email: '.$mailData['email']. "<br/>";
         $message .= 'Phone: '.$mailData['phone']. "<br/>";
@@ -28,7 +28,7 @@ class EmailController extends Controller
     }
     public static function sendNotificationContact($mailData) {
         $to      = 'haitrung01@gmail.com';
-        $subject = 'Contact Form: '.$mailData['name'];
+        $subject = 'Contact(phovuong.ca): '.$mailData['name'];
         $message = 'Name: '.$mailData['name']. "<br/>";
         $message .= 'Email: '.$mailData['email']. "<br/>";
         $message .= 'Phone: '.$mailData['phone']. "<br/>";
@@ -44,7 +44,7 @@ class EmailController extends Controller
     }
     public static function andolaSendNotificationContact($mailData) {
         $to      = 'haitrung01@gmail.com';
-        $subject = 'Reservation: '.$mailData['name'];
+        $subject = 'Contact(andolanailspa.ca): '.$mailData['name'];
         $message = 'Name: '.$mailData['name']. "<br/>";
         $message .= 'Email: '.$mailData['email']. "<br/>";
         $message .= 'Note: '.$mailData['note']. "<br/>";
