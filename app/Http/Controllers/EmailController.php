@@ -9,7 +9,7 @@ class EmailController extends Controller
     //
 
     public static function sendNotification($mailData) {
-        $to      = 'haitrung01@gmail.com';
+        $to      = 'phovuongca@gmail.com';
         $subject = 'Reservation(phovuong.ca): '.$mailData['name'];
         $message = 'Name: '.$mailData['name']. "<br/>";
         $message .= 'Email: '.$mailData['email']. "<br/>";
@@ -27,7 +27,7 @@ class EmailController extends Controller
         $mailed = mail($to, $subject, $message, $headers);
     }
     public static function sendNotificationContact($mailData) {
-        $to      = 'haitrung01@gmail.com';
+        $to      = 'phovuongca@gmail.com';
         $subject = 'Contact(phovuong.ca): '.$mailData['name'];
         $message = 'Name: '.$mailData['name']. "<br/>";
         $message .= 'Email: '.$mailData['email']. "<br/>";
@@ -43,7 +43,7 @@ class EmailController extends Controller
         $mailed = mail($to, $subject, $message, $headers);
     }
     public static function andolaSendNotificationContact($mailData) {
-        $to      = 'haitrung01@gmail.com';
+        $to      = 'andola.nailspa@gmail.com';
         $subject = 'Contact(andolanailspa.ca): '.$mailData['name'];
         $message = 'Name: '.$mailData['name']. "<br/>";
         $message .= 'Email: '.$mailData['email']. "<br/>";
