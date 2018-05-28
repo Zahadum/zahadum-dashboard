@@ -56,4 +56,18 @@ class EmailController extends Controller
 
         $mailed = mail($to, $subject, $message, $headers);
     }
+    public static function vinacastudySendNotificationContact($mailData) {
+        $to      = 'haitrung01@gmail.com';
+        $subject = 'Contact(vinacastudy.com): '.$mailData['name'];
+        $message = 'Name: '.$mailData['name']. "<br/>";
+        $message .= 'Email: '.$mailData['email']. "<br/>";
+        $message .= 'Note: '.$mailData['note']. "<br/>";
+        $headers = 'From: contact@vinacastudy.com' . "\r\n" .
+            'Reply-To: From: contact@vinacastudy.com' . "\r\n" .
+            "MIME-Version: 1.0\r\n" .
+            "Content-Type: text/html; charset=ISO-8859-1\r\n";
+        'X-Mailer: PHP/' . phpversion();
+
+        $mailed = mail($to, $subject, $message, $headers);
+    }
 }

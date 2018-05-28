@@ -19,5 +19,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::resource('reservations', 'Api\ReservationController')->only(['index','store','show'])->middleware('cors');
 Route::post('contact', 'Api\ReservationController@sendContact')->middleware('cors');
 Route::post('andolacontact','Api\ReservationController@andolaSendContact')->middleware('cors');
+Route::post('vinacastudy','Api\ReservationController@vinacastudySendContact')->middleware('cors');
 //Route::get('reservations','Api\ReservationController@index');
 //Route::post('reservations','Api\ReservationController@store');

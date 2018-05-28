@@ -105,4 +105,22 @@ class ReservationController extends Controller
         }
         return ['status'=>'failed'];
     }
+    public function vinacastudySendContact(Request $request) {
+        $contact = $this->validate($request,[
+            'name' => 'nullable',
+            'email'=> 'required|email',
+            'note' => 'required',
+            'key' => 'required',
+        ]);
+        if($contact["key"]=='123') {
+            $contact = ContactForm::create($contact);
+            $contactResource = new ContactFormResource($contact);
+            $mailData['name'] = $contactResource['name'];
+            $mailData['email'] = $contactResource['email'];
+            $mailData['note'] = $contactResource['note'];
+            EmailController::vinacastudySendNotificationContact($mailData);
+            return $contactResource;
+        }
+        return ['status'=>'failed'];
+    }
 }
