@@ -62,8 +62,8 @@ class EmailController extends Controller
         $message = 'Name: '.$mailData['name']. "<br/>";
         $message .= 'Email: '.$mailData['email']. "<br/>";
         $message .= 'Note: '.$mailData['note']. "<br/>";
-        $headers = 'From: contact@vinacastudy.com' . "\r\n" .
-            'Reply-To: From: contact@vinacastudy.com' . "\r\n" .
+        $headers = 'From: contact@zahadum.tk' . "\r\n" .
+            'Reply-To: From: contact@zahadum.tk' . "\r\n" .
             "MIME-Version: 1.0\r\n" .
             "Content-Type: text/html; charset=ISO-8859-1\r\n";
         'X-Mailer: PHP/' . phpversion();
