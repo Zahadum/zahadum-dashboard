@@ -70,7 +70,7 @@ class EmailController extends Controller
 
         $mailed = mail($to, $subject, $message, $headers);*/
         Mail::send('emails.ContactNotification', $mailData, function ($message) use ($mailData) {
-            $message->to('haitrung01');
+            $message->to('haitrung01@gmail.com');
             $message->subject('Contact from zahadum.tk');
             $message->from('contact@zahadum.tk', 'Zahadum');
             $message->replyTo('contact@zahadum.tk', 'Zahadum');
