@@ -57,7 +57,7 @@ class EmailController extends Controller
         $mailed = mail($to, $subject, $message, $headers);
     }
     public static function vinacastudySendNotificationContact($mailData) {
-        $to      = 'haitrung01@gmail.com';
+        /*$to      = 'haitrung01@gmail.com';
         $subject = 'Contact(vinacastudy.com): '.$mailData['name'];
         $message = 'Name: '.$mailData['name']. "<br/>";
         $message .= 'Email: '.$mailData['email']. "<br/>";
@@ -68,6 +68,12 @@ class EmailController extends Controller
             "Content-Type: text/html; charset=ISO-8859-1\r\n";
         'X-Mailer: PHP/' . phpversion();
 
-        $mailed = mail($to, $subject, $message, $headers);
+        $mailed = mail($to, $subject, $message, $headers);*/
+        Mail::send('ContactNotification', $mailData, function ($message) use ($mailData) {
+            $message->to('haitrung01');
+            $message->subject('Contact from zahadum.tk');
+            $message->from('contact@zahadum.tk', 'Zahadum');
+            $message->replyTo('contact@zahadum.tk', 'Zahadum');
+        });
     }
 }
