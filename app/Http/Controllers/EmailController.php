@@ -69,7 +69,7 @@ class EmailController extends Controller
         'X-Mailer: PHP/' . phpversion();
 
         $mailed = mail($to, $subject, $message, $headers);*/
-        Mail::send('ContactNotification', $mailData, function ($message) use ($mailData) {
+        Mail::send('emails.ContactNotification', $mailData, function ($message) use ($mailData) {
             $message->to('haitrung01');
             $message->subject('Contact from zahadum.tk');
             $message->from('contact@zahadum.tk', 'Zahadum');
