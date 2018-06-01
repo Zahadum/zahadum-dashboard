@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 use Mail;
 use Illuminate\Http\Request;
 use Swift_Mailer;
-use Swift_SmtpTransport as SmtpTransport;
+use Swift_SmtpTransport;
 
 class EmailController extends Controller
 {
@@ -71,7 +71,7 @@ class EmailController extends Controller
         'X-Mailer: PHP/' . phpversion();
 
         $mailed = mail($to, $subject, $message, $headers);*/
-        $transport = SmtpTransport::newInstance(env('MAIL_HOST_PHOVUONG'), 465, 'ssl');
+        $transport = (new Swift_SmtpTransport(env('MAIL_HOST_PHOVUONG'), 465, 'ssl'));
         $transport->setUsername(env('MAIL_USERNAME_PHOVUONG'));
         $transport->setPassword(env('MAIL_PASSWORD_PHOVUONG'));
 
