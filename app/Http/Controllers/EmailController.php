@@ -38,7 +38,7 @@ class EmailController extends Controller
         Mail::setSwiftMailer($phovuongca);
 
         Mail::send('emails.PVNotification', $mailData, function ($message) use ($mailData) {
-            $message->to('haitrung01@gmail.com');
+            $message->to('phovuongca@gmail.com');
             $message->subject('Reservation(phovuong.ca): '.$mailData['name']);
             $message->from('contact@phovuong.ca', 'Pho Vuong');
         });
