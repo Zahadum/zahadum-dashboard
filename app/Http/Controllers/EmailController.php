@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 use Mail;
 use Illuminate\Http\Request;
+use Swift_Mailer;
+use Swift_SmtpTransport as SmtpTransport;
 
 class EmailController extends Controller
 {
@@ -69,11 +71,21 @@ class EmailController extends Controller
         'X-Mailer: PHP/' . phpversion();
 
         $mailed = mail($to, $subject, $message, $headers);*/
+        $transport = SmtpTransport::newInstance(env('MAIL_HOST_PHOVUONG'), 465, 'ssl');
+        $transport->setUsername(env('MAIL_USERNAME_PHOVUONG'));
+        $transport->setPassword(env('MAIL_PASSWORD_PHOVUONG'));
+
+        // Assign a new SmtpTransport to SwiftMailer
+        $phovuongca = new Swift_Mailer($transport);
+
+        // Assign it to the Laravel Mailer
+        Mail::setSwiftMailer($phovuongca);
+
         Mail::send('emails.ContactNotification', $mailData, function ($message) use ($mailData) {
             $message->to('haitrung01@gmail.com');
             $message->subject('Contact from zahadum.tk');
-            $message->from('contact@zahadum.tk', 'Zahadum');
-            $message->replyTo('contact@zahadum.tk', 'Zahadum');
+            $message->from('contact@phovuong.ca', 'Pho Vuong');
+            $message->replyTo('contact@phovuong.ca', 'Pho Vuong');
         });
     }
 }
