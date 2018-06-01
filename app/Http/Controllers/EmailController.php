@@ -11,7 +11,7 @@ class EmailController extends Controller
     //
 
     public static function sendNotification($mailData) {
-        $to      = 'haitrung01@gmail.com';
+        /*$to      = 'haitrung01@gmail.com';
         $subject = 'Reservation(phovuong.ca): '.$mailData['name'];
         $message = 'Name: '.$mailData['name']. "<br/>";
         $message .= 'Email: '.$mailData['email']. "<br/>";
@@ -26,8 +26,8 @@ class EmailController extends Controller
             "Content-Type: text/html; charset=ISO-8859-1\r\n";
         'X-Mailer: PHP/' . phpversion();
 
-        $mailed = mail($to, $subject, $message, $headers);
-        /*$transport = (new Swift_SmtpTransport(env('MAIL_HOST_PHOVUONG'), 465, 'ssl'));
+        $mailed = mail($to, $subject, $message, $headers);*/
+        $transport = (new Swift_SmtpTransport(env('MAIL_HOST_PHOVUONG'), 465, 'ssl'));
         $transport->setUsername(env('MAIL_USERNAME_PHOVUONG'));
         $transport->setPassword(env('MAIL_PASSWORD_PHOVUONG'));
 
@@ -41,7 +41,7 @@ class EmailController extends Controller
             $message->to('haitrung01@gmail.com');
             $message->subject('Reservation(phovuong.ca): '.$mailData['name']);
             $message->from('contact@phovuong.ca', 'Pho Vuong');
-        });*/
+        });
     }
     public static function sendNotificationContact($mailData) {
         $to      = 'phovuongca@gmail.com';
