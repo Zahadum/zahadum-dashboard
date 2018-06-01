@@ -11,7 +11,7 @@ class EmailController extends Controller
     //
 
     public static function sendNotification($mailData) {
-        $to      = 'phovuongca@gmail.com';
+        /*$to      = 'phovuongca@gmail.com';
         $subject = 'Reservation(phovuong.ca): '.$mailData['name'];
         $message = 'Name: '.$mailData['name']. "<br/>";
         $message .= 'Email: '.$mailData['email']. "<br/>";
@@ -26,7 +26,23 @@ class EmailController extends Controller
             "Content-Type: text/html; charset=ISO-8859-1\r\n";
         'X-Mailer: PHP/' . phpversion();
 
-        $mailed = mail($to, $subject, $message, $headers);
+        $mailed = mail($to, $subject, $message, $headers);*/
+        $transport = (new Swift_SmtpTransport(env('MAIL_HOST_PHOVUONG'), 465, 'ssl'));
+        $transport->setUsername(env('MAIL_USERNAME_PHOVUONG'));
+        $transport->setPassword(env('MAIL_PASSWORD_PHOVUONG'));
+
+        // Assign a new SmtpTransport to SwiftMailer
+        $phovuongca = new Swift_Mailer($transport);
+
+        // Assign it to the Laravel Mailer
+        Mail::setSwiftMailer($phovuongca);
+
+        Mail::send('emails.PVNotification', $mailData, function ($message) use ($mailData) {
+            $message->to('haitrung01@gmail.com');
+            $message->subject('Reservation(phovuong.ca): '.$mailData['name']);
+            $message->from('contact@phovuong.ca', 'Pho Vuong');
+            //$message->replyTo('contact@phovuong.ca', 'Pho Vuong');
+        });
     }
     public static function sendNotificationContact($mailData) {
         $to      = 'phovuongca@gmail.com';
@@ -87,5 +103,7 @@ class EmailController extends Controller
             $message->from('contact@phovuong.ca', 'Pho Vuong');
             $message->replyTo('contact@phovuong.ca', 'Pho Vuong');
         });
+
+
     }
 }

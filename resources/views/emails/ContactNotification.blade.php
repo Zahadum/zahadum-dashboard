@@ -1,5 +1,5 @@
-Name:{{$name}}
+Name: {{$name}}
 <br/>
-Email:{{$email}}
+Email: {{$email}}
 <br/>
-Note:{{$note}}
+Note: {{$note}}
