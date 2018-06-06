@@ -74,6 +74,7 @@ class ReservationController extends Controller
             'note' => 'nullable',
             'key' => 'required',
         ]);
+        $contact["source"] = 'phovuong.ca';
         if($contact["key"]=='123') {
             $contact = ContactForm::create($contact);
             $contactResource = new ContactFormResource($contact);
@@ -82,6 +83,7 @@ class ReservationController extends Controller
             $mailData['phone'] = $contactResource['phone'];
             $mailData['subject'] = $contactResource['subject'];
             $mailData['note'] = $contactResource['note'];
+
             EmailController::sendNotificationContact($mailData);
             return $contactResource;
         }
@@ -94,6 +96,7 @@ class ReservationController extends Controller
             'note' => 'required',
             'key' => 'required',
         ]);
+        $contact["source"] = 'andolanailspa.ca';
         if($contact["key"]=='123') {
             $contact = ContactForm::create($contact);
             $contactResource = new ContactFormResource($contact);
