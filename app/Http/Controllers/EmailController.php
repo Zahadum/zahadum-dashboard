@@ -96,8 +96,8 @@ class EmailController extends Controller
         Mail::setSwiftMailer($andolanailspaca);
 
         Mail::send('emails.ContactNotification', $mailData, function ($message) use ($mailData) {
-            //$message->to('andola.nailspa@gmail.com');
-            $message->to('haitrung01@gmail.com');
+            $message->to('andola.nailspa@gmail.com');
+            //$message->to('haitrung01@gmail.com');
             $message->subject('Contact(andolanailspa.ca): '.$mailData['name']);
             $message->from('contact@andolanailspa.ca', 'Andola Nail Spa');
         });
