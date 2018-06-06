@@ -38,8 +38,8 @@ class EmailController extends Controller
         Mail::setSwiftMailer($phovuongca);
 
         Mail::send('emails.PVNotification', $mailData, function ($message) use ($mailData) {
-            //$message->to('phovuongca@gmail.com');
-            $message->to('haitrung01@gmail.com');
+            $message->to('phovuongca@gmail.com');
+            //$message->to('haitrung01@gmail.com');
             $message->subject('Reservation(phovuong.ca): '.$mailData['name']);
             $message->from('contact@phovuong.ca', 'Pho Vuong');
         });
@@ -65,8 +65,8 @@ class EmailController extends Controller
         Mail::setSwiftMailer($phovuongca);
 
         Mail::send('emails.ContactNotification', $mailData, function ($message) use ($mailData) {
-            //$message->to('phovuongca@gmail.com');
-            $message->to('haitrung01@gmail.com');
+            $message->to('phovuongca@gmail.com');
+            //$message->to('haitrung01@gmail.com');
             $message->subject('Contact(phovuong.ca): '.$mailData['name']);
             $message->from('contact@phovuong.ca', 'Pho Vuong');
         });
