@@ -19,9 +19,11 @@
                                 </div>
                                 <input id="email" name="email" type="text" class="form-control" placeholder="Username">
                                 @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
+                                    <div>
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('email') }}</strong>
+                                        </span>
+                                    </div>
                                 @endif
                             </div>
                             <div class="input-group mb-4">
@@ -32,9 +34,11 @@
                                 </div>
                                 <input id="password" name="password" type="password" class="form-control" placeholder="Password">
                                 @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
+                                    <div>
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('password') }}</strong>
+                                        </span>
+                                    </div>
                                 @endif
                             </div>
                             <div class="row">
