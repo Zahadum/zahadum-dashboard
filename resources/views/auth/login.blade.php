@@ -11,33 +11,38 @@
                             {{ csrf_field() }}
                             <h1>Login</h1>
                             <p class="text-muted">Sign In to your account</p>
-                            <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text">
-                                        <i class="icon-user"></i>
-                                    </span>
+                            <div class="controls" style="margin-bottom: 1em;">
+                                <div class="input-prepend input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="icon-user"></i>
+                                        </span>
+                                    </div>
+                                    <input id="email" name="email" type="text" class="form-control" placeholder="Username">
+
                                 </div>
-                                <input id="email" name="email" type="text" class="form-control" placeholder="Username">
                                 @if ($errors->has('email'))
                                     <div>
-                                        <span class="help-block">
+                                        <p class="help-block">
                                             <strong>{{ $errors->first('email') }}</strong>
-                                        </span>
+                                        </p>
                                     </div>
                                 @endif
                             </div>
-                            <div class="input-group mb-4">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text">
-                                      <i class="icon-lock"></i>
-                                    </span>
+                            <div class="controls" style="margin-bottom: 1em;">
+                                <div class="input-prepend input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                          <i class="icon-lock"></i>
+                                        </span>
+                                    </div>
+                                    <input id="password" name="password" type="password" class="form-control" placeholder="Password">
                                 </div>
-                                <input id="password" name="password" type="password" class="form-control" placeholder="Password">
                                 @if ($errors->has('password'))
                                     <div>
-                                        <span class="help-block">
-                                            <strong>{{ $errors->first('password') }}</strong>
-                                        </span>
+                                            <span class="help-block">
+                                                <strong>{{ $errors->first('password') }}</strong>
+                                            </span>
                                     </div>
                                 @endif
                             </div>
