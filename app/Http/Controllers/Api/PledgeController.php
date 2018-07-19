@@ -16,12 +16,13 @@ class PledgeController extends Controller
             'key' => 'required',
         ]);
         if($pledge["key"]=='123') {
-            return ['status'=>'Success'];
-        }
-        return ['status'=>'failed',
+            return ['status'=>'Success',
                 'cardnumber'=> $pledge["cardnumber"],
                 'firstname' => $pledge["firstname"],
                 'lastname' => $pledge["lastname"],
+            ];
+        }
+        return ['status'=>'failed'
 
         ];
     }
