@@ -13,11 +13,10 @@ class PledgeController extends Controller
             'cardnumber' => 'required',
             'firstname' => 'required',
             'lastname' => 'required',
-            'key' => '123',
+            'key' => 'required',
         ]);
         if($pledge["key"]=='123') {
             return ['status'=>'Success'];
-            return $reservationResource;
         }
         return ['status'=>'failed'];
     }
