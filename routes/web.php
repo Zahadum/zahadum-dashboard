@@ -30,3 +30,6 @@ Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 Route::get('/', 'HomeController@index')->name('home');
 
 Route::get('/logout', 'Auth\LoginController@logout');
+Route::get('test',function() {
+var_dump('aaa');
+});
