@@ -34,5 +34,5 @@ Route::get('test',function() {
 var_dump('aaa');
     $mailData=[];
     $mailTemplate=[];
-    $this->dispatch(new \App\Jobs\SendNotificationEmail($mailData,$mailTemplate));
+    $this->dispatch((new \App\Jobs\SendNotificationEmail($mailData,$mailTemplate)));
 });
