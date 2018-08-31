@@ -15,7 +15,7 @@ class TestController extends Controller
         $mailData['subject'] = 'test';
         $mailData['note'] = 'test note';
 
-        $mailTemplate='';
-        $this->dispatch((new \App\Jobs\SendNotificationEmail($mailData,$mailTemplate)));
+        $type='test';
+        $this->dispatch((new \App\Jobs\SendNotificationEmail($mailData,$type)));
     }
 }

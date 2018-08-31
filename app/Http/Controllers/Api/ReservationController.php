@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\ContactForm;
+use App\Http\Controllers\CommonFunction;
 use App\Http\Controllers\EmailController;
 use App\Http\Resources\ContactFormResource;
 use App\Http\Resources\ReservationResource;
@@ -41,6 +42,7 @@ class ReservationController extends Controller
      * @return ReservationResource
      */
     public function store(Request $request) {
+        $type = CommonFunction::PHO_VUONG_CA_RESERVATION_TYPE;
         $reservation = $this->validate($request,[
             'name' => 'nullable',
             'email'=> 'required|email',
@@ -61,11 +63,14 @@ class ReservationController extends Controller
             $mailData['date'] = $reservationResource['date']['date'];
             $mailData['note'] = $reservationResource['note'];
             EmailController::sendNotification($mailData);
+            //
+            //$this->dispatch((new \App\Jobs\SendNotificationEmail($mailData,$type)));
             return $reservationResource;
         }
         return ['status'=>'failed'];
     }
     public function sendContact(Request $request) {
+        $type = CommonFunction::PHO_VUONG_CA_CONTACT_TYPE;
         $contact = $this->validate($request,[
             'name' => 'nullable',
             'email'=> 'required|email',
@@ -85,11 +90,14 @@ class ReservationController extends Controller
             $mailData['note'] = $contactResource['note'];
 
             EmailController::sendNotificationContact($mailData);
+            //$this->dispatch((new \App\Jobs\SendNotificationEmail($mailData,$type)));
+
             return $contactResource;
         }
         return ['status'=>'failed'];
     }
     public function andolaSendContact(Request $request) {
+        $type = CommonFunction::ANDOLA_NAIL_SPA_CONTACT_TYPE;
         $contact = $this->validate($request,[
             'name' => 'nullable',
             'email'=> 'required|email',
@@ -104,6 +112,8 @@ class ReservationController extends Controller
             $mailData['email'] = $contactResource['email'];
             $mailData['note'] = $contactResource['note'];
             EmailController::andolaSendNotificationContact($mailData);
+            //$this->dispatch((new \App\Jobs\SendNotificationEmail($mailData,$type)));
+
             return $contactResource;
         }
         return ['status'=>'failed'];

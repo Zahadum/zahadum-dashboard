@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Http\Controllers\CommonFunction;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
@@ -23,12 +24,13 @@ class SendNotificationEmail implements ShouldQueue
      * @return void
      */
     protected $mailData;
-    protected $mailTemplate;
-    public function __construct($mailData,$mailTemplate)
+    protected $type;
+    public function __construct($mailData,$type)
     {
         //
         $this->mailData = $mailData;
-        $this->mailTemplate = $mailTemplate;
+        $this->type = $type;
+
     }
 
     /**
@@ -38,11 +40,40 @@ class SendNotificationEmail implements ShouldQueue
      */
     public function handle()
     {
-        //
-        //
-        $mailData = $this->mailData;
-        $mailTemplate = $this->mailTemplate;
+        if($this->type == CommonFunction::PHO_VUONG_CA_RESERVATION_TYPE) {
+            $this->phovuongReservationForm();
+        } else if($this->type == CommonFunction::PHO_VUONG_CA_CONTACT_TYPE) {
+            $this->phovuongContactForm();
+        } else if($this->type == CommonFunction::ANDOLA_NAIL_SPA_CONTACT_TYPE) {
+            $this->andolanailspaContactForm();
+        } else {
 
+            //
+            $mailData = $this->mailData;
+
+            $transport = (new Swift_SmtpTransport(env('MAIL_HOST_PHOVUONG'), 465, 'ssl'));
+            $transport->setUsername(env('MAIL_USERNAME_PHOVUONG'));
+            $transport->setPassword(env('MAIL_PASSWORD_PHOVUONG'));
+
+            // Assign a new SmtpTransport to SwiftMailer
+            $phovuongca = new Swift_Mailer($transport);
+
+            // Assign it to the Laravel Mailer
+            Mail::setSwiftMailer($phovuongca);
+
+            Mail::send('emails.ContactNotification', $mailData, function ($message) use ($mailData) {
+                $message->to('haitrung01@gmail.com');
+                $message->subject('Contact from zahadum.tk');
+                $message->from('contact@phovuong.ca', 'Pho Vuong');
+                $message->replyTo('contact@phovuong.ca', 'Pho Vuong');
+            });
+
+        }
+
+    }
+
+    private function phovuongContactForm() {
+        $mailData = $this->mailData;
         $transport = (new Swift_SmtpTransport(env('MAIL_HOST_PHOVUONG'), 465, 'ssl'));
         $transport->setUsername(env('MAIL_USERNAME_PHOVUONG'));
         $transport->setPassword(env('MAIL_PASSWORD_PHOVUONG'));
@@ -54,10 +85,50 @@ class SendNotificationEmail implements ShouldQueue
         Mail::setSwiftMailer($phovuongca);
 
         Mail::send('emails.ContactNotification', $mailData, function ($message) use ($mailData) {
-            $message->to('haitrung01@gmail.com');
-            $message->subject('Contact from zahadum.tk');
+            $message->to('phovuongca@gmail.com');
+            //$message->to('haitrung01@gmail.com');
+            $message->subject('Contact(phovuong.ca): '.$mailData['name']);
             $message->from('contact@phovuong.ca', 'Pho Vuong');
-            $message->replyTo('contact@phovuong.ca', 'Pho Vuong');
+        });
+    }
+
+    private function phovuongReservationForm() {
+        $mailData = $this->mailData;
+        $transport = (new Swift_SmtpTransport(env('MAIL_HOST_PHOVUONG'), 465, 'ssl'));
+        $transport->setUsername(env('MAIL_USERNAME_PHOVUONG'));
+        $transport->setPassword(env('MAIL_PASSWORD_PHOVUONG'));
+
+        // Assign a new SmtpTransport to SwiftMailer
+        $phovuongca = new Swift_Mailer($transport);
+
+        // Assign it to the Laravel Mailer
+        Mail::setSwiftMailer($phovuongca);
+
+        Mail::send('emails.PVNotification', $mailData, function ($message) use ($mailData) {
+            $message->to('phovuongca@gmail.com');
+            //$message->to('haitrung01@gmail.com');
+            $message->subject('Reservation(phovuong.ca): '.$mailData['name']);
+            $message->from('contact@phovuong.ca', 'Pho Vuong');
+        });
+    }
+
+    private function andolanailspaContactForm() {
+        $mailData = $this->mailData;
+        $transport = (new Swift_SmtpTransport(env('MAIL_HOST_ANDOLANAILSPA'), 465, 'ssl'));
+        $transport->setUsername(env('MAIL_USERNAME_ANDOLANAILSPA'));
+        $transport->setPassword(env('MAIL_PASSWORD_ANDOLANAILSPA'));
+
+        // Assign a new SmtpTransport to SwiftMailer
+        $andolanailspaca = new Swift_Mailer($transport);
+
+        // Assign it to the Laravel Mailer
+        Mail::setSwiftMailer($andolanailspaca);
+
+        Mail::send('emails.ContactNotification', $mailData, function ($message) use ($mailData) {
+            $message->to('andola.nailspa@gmail.com');
+            //$message->to('haitrung01@gmail.com');
+            $message->subject('Contact(andolanailspa.ca): '.$mailData['name']);
+            $message->from('contact@andolanailspa.ca', 'Andola Nail Spa');
         });
     }
 }
