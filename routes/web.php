@@ -32,4 +32,7 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::get('/logout', 'Auth\LoginController@logout');
 Route::get('test',function() {
 var_dump('aaa');
+    $mailData=[];
+    $mailTemplate=[];
+    $this->dispatch(new \App\Jobs\SendNotificationEmail($mailData,$mailTemplate));
 });
