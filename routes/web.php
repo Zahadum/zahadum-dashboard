@@ -31,5 +31,6 @@ Route::get('/', 'HomeController@index')->name('home');
 
 Route::get('/logout', 'Auth\LoginController@logout');
 Route::get('test',function() {
-    \App\Http\Controllers\TestController::TestMethod();
+    $testController = new \App\Http\Controllers\TestController();
+    $testController->TestMethod();
 });
